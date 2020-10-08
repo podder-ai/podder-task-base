@@ -20,7 +20,6 @@ __pycache__/
 # files generated for release
 dist/
 build/
-README.rst
 
 # Editor
 .idea
