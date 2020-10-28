@@ -13,7 +13,7 @@ class Process(ProcessBase):
         # - Prepare some data
         self._model_file_path = Path(
             context.file.get_data_file(
-                context.config.get("default.craft_model_name")))
+                context.config.get("model.name")))
 
     def execute(self, input_payload: Payload, output_payload: Payload,
                 context: Context):
@@ -22,6 +22,7 @@ class Process(ProcessBase):
 
         # Do something
         result = {}
+        context.logger.info("some message")
 
         # Add result to output payload
         output_payload.add_dictionary(result)

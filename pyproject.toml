@@ -5,7 +5,7 @@ description = ""
 authors = ["Takaaki Mizuno <takaaki.mizuno@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.1"
 podder-task-foundation = {git = "git@github.com:podder-ai/podder-task-foundation.git", rev = "main"}
 
 [tool.poetry.dev-dependencies]
