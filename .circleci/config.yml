@@ -1,7 +1,14 @@
+# Please set the environment variables:
+# - AWS_REGION
+# - AWS_ACCESS_KEY_ID
+# - AWS_SECRET_ACCESS_KEY
+# - ECR_REPOSITORY
+# - IMAGES_YML_S3_URI
 version: 2.1
 
 orbs:
   aws-ecr: circleci/aws-ecr@6.8.2
+  aws-s3: circleci/aws-s3@2.0.0
 
 executors:
   default:
@@ -23,6 +30,9 @@ workflows:
                 - dev
                 - stg
                 - production
+      - update-argo:
+          requires:
+            - aws-ecr/build-and-push-image
 
 jobs:
   unit-test:
@@ -53,3 +63,30 @@ jobs:
           name: Run pytest
           command: |
             poetry run pytest tests/
+
+  update-argo:
+    executor:
+      name: default
+    steps:
+      - checkout
+      - aws-s3/copy:
+          from: ${IMAGES_YML_S3_URI}
+          to: images.yml
+      - run:
+          name: Update Images Yaml
+          command: |
+            pip install -U pip setuptools PyYAML
+            export FILE=update-file.py
+
+            echo "import yaml;
+            with open('images.yml') as f: images = yaml.safe_load(f.read());
+            print(f'images (before): {images}')
+            images['starter-task-image'] = '099280104478.dkr.ecr.us-west-1.amazonaws.com/${ECR_REPOSITORY}:${CIRCLE_SHA1}';
+            print(f'images (after): {images}')
+            with open('images.yml', 'w') as f: f.write(yaml.dump(images));" >> $FILE
+
+            python $FILE
+            echo "Successfully updated the images.yml."
+      - aws-s3/copy:
+          from: images.yml
+          to: ${IMAGES_YML_S3_URI}
