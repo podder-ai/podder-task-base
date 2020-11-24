@@ -12,7 +12,7 @@ workflows:
   unit-test:
     jobs:
       - unit-test
-  build-and-deploy:
+  build-and-push-image:
     jobs:
       - aws-ecr/build-and-push-image:
           repo: "${ECR_REPOSITORY}"
