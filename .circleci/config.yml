@@ -1,14 +1,28 @@
 version: 2.1
 
+orbs:
+  aws-ecr: circleci/aws-ecr@6.8.2
+
 executors:
   default:
     docker:
       - image: circleci/python:3.8
 
 workflows:
-  main:
+  unit-test:
     jobs:
       - unit-test
+  build-and-push-image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          repo: "${ECR_REPOSITORY}"
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only:
+                - dev
+                - stg
+                - production
 
 jobs:
   unit-test:
