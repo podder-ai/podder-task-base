@@ -12,8 +12,7 @@ class Process(ProcessBase):
         # - Large text(json) file loading
         # - Prepare some data
         self._model_file_path = Path(
-            context.file.get_data_file(
-                context.config.get("model.name")))
+            context.file.get_data_file(context.config.get("model.name")))
 
     def execute(self, input_payload: Payload, output_payload: Payload,
                 context: Context):
