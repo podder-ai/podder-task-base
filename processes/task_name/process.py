@@ -18,13 +18,10 @@ class Process(ProcessBase):
                 context: Context):
         # Get Input
         # input_image = input_payload.get_image()  # Get Pillow Image from input
-        # Remove Me {{ input_code }}
+        # Get input data {{ input_code }}
 
         # Do something
         result = {}
         context.logger.info("some message")
-        input_payload.get()
 
-        # Add result to output payload
-        output_payload.add_dictionary(result)
-        # Remove Me {{ output_code }}
+        # Output result {{ output_code }}
