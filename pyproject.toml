@@ -5,7 +5,7 @@ description = ""
 authors = ["{{ author.name }} <{{ author.email }}>"]
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.6.2"
 podder-task-foundation = {git = "git://github.com/podder-ai/podder-task-foundation.git", rev = "main"}
 
 [tool.poetry.dev-dependencies]
