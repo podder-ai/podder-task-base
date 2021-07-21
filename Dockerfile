@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 RUN apt-get update && apt-get install -y \
     python3.8 python3-pip locales \
@@ -30,4 +30,6 @@ COPY poetry.lock pyproject.toml ${APP_ROOT}/
 RUN poetry config virtualenvs.create false && poetry install
 
 COPY . ${APP_ROOT}
-CMD ["python", "manage.py"]
+
+EXPOSE 5000
+ENTRYPOINT ["python", "manage.py", "http", "-H", "0.0.0.0", "-p", "5000"]
