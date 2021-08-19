@@ -12,6 +12,7 @@ podder-task-foundation = {git = "git://github.com/podder-ai/podder-task-foundati
 pytest = "^5.2"
 isort = "^5.6.0"
 yapf = "^0.30.0"
+pytest-cov = "^2.12.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
