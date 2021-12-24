@@ -1,0 +1,4 @@
+name: "{{ name }}"
+external_libraries: []
+data: []
+commands: []
