@@ -30,3 +30,6 @@ build/
 # OS Dependent files
 .DS_Store
 .pypirc
+
+# poetry
+poetry.lock

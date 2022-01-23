@@ -6,7 +6,7 @@ authors = ["{{ author.name }} <{{ author.email }}>"]
 
 [tool.poetry.dependencies]
 python = ">=3.7.1,<4.0.0"
-podder-task-foundation = {git = "git://github.com/podder-ai/podder-task-foundation.git"}
+podder-task-foundation = {git = "git://github.com/podder-ai/podder-task-foundation.git", rev = "0.2.10"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.5"
