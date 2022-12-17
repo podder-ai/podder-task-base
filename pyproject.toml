@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "podder-task-base"
+name = "{{ name }}"
 version = "0.1.0"
 description = ""
 authors = ["{{ author.name }} <{{ author.email }}>"]
