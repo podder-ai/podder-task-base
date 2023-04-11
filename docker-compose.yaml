@@ -1,0 +1,6 @@
+version: '3'
+services:
+    podder-app:
+        build: .
+        ports:
+            - "80:5000"
